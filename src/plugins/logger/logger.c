@@ -1068,11 +1068,9 @@ logger_backlog (struct t_gui_buffer *buffer, const char *filename, int lines)
                 pos_tab[0] = '\0';
             weechat_printf_date_tags (buffer, datetime,
                                       "no_highlight,notify_none,logger_backlog",
-                                      "%s%s%s%s%s",
-                                      weechat_color (weechat_config_string (logger_config_color_backlog_line)),
+                                      "%s%s%s",
                                       message,
                                       (pos_tab) ? "\t" : "",
-                                      (pos_tab) ? weechat_color (weechat_config_string (logger_config_color_backlog_line)) : "",
                                       (pos_tab) ? pos_tab + 1 : "");
             if (pos_tab)
                 pos_tab[0] = '\t';
@@ -1444,7 +1442,7 @@ weechat_plugin_init (struct t_weechat_plugin *plugin, int argc, char *argv[])
     weechat_hook_signal ("day_changed",
                          &logger_day_changed_signal_cb, NULL, NULL);
 
-    weechat_hook_print (NULL, NULL, NULL, 1, &logger_print_cb, NULL, NULL);
+    weechat_hook_print (NULL, NULL, NULL, 0, &logger_print_cb, NULL, NULL);
 
     logger_info_init ();
 
